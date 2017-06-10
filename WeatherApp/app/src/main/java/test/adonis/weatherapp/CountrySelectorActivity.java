@@ -1,13 +1,15 @@
 package test.adonis.weatherapp;
 
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -19,7 +21,6 @@ import test.adonis.weatherapp.controller.WeathersAdapter;
 import test.adonis.weatherapp.model.Weather;
 import test.adonis.weatherapp.utils.PopUpUtils;
 
-import static java.security.AccessController.getContext;
 
 public class CountrySelectorActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -55,6 +56,7 @@ public class CountrySelectorActivity extends AppCompatActivity implements View.O
     public void onClick(View v) {
 
         if(v.getId() == R.id.btnGo){
+            closeSoftKeyBoard();
             if(mEditTextCountry.getText() != null && !mEditTextCountry.getText().toString().equals("")){
                 mCountryController.searchCountry(mEditTextCountry.getText().toString());
             } else {
@@ -74,7 +76,7 @@ public class CountrySelectorActivity extends AppCompatActivity implements View.O
             if(weathers.size() > 0){
                 this.mWeathers = weathers;
 
-                mWeathersAdapter = new WeathersAdapter(this, mWeathers);
+                mWeathersAdapter = new WeathersAdapter(this, mWeathers, mCountryController);
 
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
                 mRecyclerView.setLayoutManager(mLayoutManager);
@@ -90,6 +92,11 @@ public class CountrySelectorActivity extends AppCompatActivity implements View.O
             AlertDialog dialog = PopUpUtils.showUserMessage(this, getString(R.string.error_message_no_items));
             dialog.show();
         }
-
     }
+
+    private void closeSoftKeyBoard(){
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(mEditTextCountry.getWindowToken(), 0);
+    }
+
 }

@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="test.adonis.weatherapp.DetailWeather"
-    tools:showIn="@layout/activity_detail_weather">
+    tools:context="test.adonis.weatherapp.DetailWeather">
 
 
     <TextView
@@ -14,19 +13,71 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:textSize="50sp"
-        android:transitionName="country"/>
+        android:textSize="50sp"/>
 
     <ImageView
         android:id="@+id/weather_img"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
         android:layout_below="@id/full_name_country"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:transitionName="weather_img"/>
+        android:layout_marginTop="20dp"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/weather_img">
+
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weather"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/current_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </TableRow>}
+
+        <TableRow>
+            <TextView
+                android:id="@+id/current_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pressure"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/current_pressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Humidity"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/current_humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </TableRow>
+
+
+    </TableLayout>
 
 
 </RelativeLayout>

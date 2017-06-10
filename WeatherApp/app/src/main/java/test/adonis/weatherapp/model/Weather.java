@@ -33,6 +33,8 @@ public class Weather {
     private String sunset;
     private String sunrise;
 
+    private String visibility;
+
 
     public String getSunset() {
         return sunset;
@@ -200,6 +202,14 @@ public class Weather {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(String visibility) {
+        this.visibility = visibility;
     }
 }
 

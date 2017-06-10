@@ -23,8 +23,7 @@
                 android:layout_height="50dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="16dp"
-                android:transitionName="weather_img"/>
+                android:layout_marginRight="16dp"/>
 
             <TextView
                 android:id="@+id/country"
@@ -32,8 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/weather_img"
                 android:layout_alignParentTop="true"
-                android:textSize="30sp"
-                android:transitionName="country"/>
+                android:textSize="30sp"/>
 
             <ImageView
                 android:id="@+id/country_flag"
