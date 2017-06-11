@@ -97,10 +97,15 @@ public class HttpConector {
 
             url = ServerConstants.REQUEST_URL + what + urlParams;
         } else {
-            if(!what.equals(ServerConstants.STANDALONE))
+            /*if(!what.equals(ServerConstants.STANDALONE))
                 url = ServerConstants.REQUEST_URL + what;
             else
+                url = params[0];*/
+            if(what.equals(ServerConstants.STANDALONE) || what.equals(ServerConstants.DAILY)){
                 url = params[0];
+            } else {
+                url = ServerConstants.REQUEST_URL + what;
+            }
         }
 
         return url;

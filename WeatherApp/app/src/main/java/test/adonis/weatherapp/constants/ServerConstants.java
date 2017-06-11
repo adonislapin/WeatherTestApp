@@ -17,7 +17,8 @@ public class ServerConstants {
 
 
     public static final String REQUEST_COUNTRY = "https://openweathermap.org/data/2.5/find?callback=jQuery19109888796167426994_1497019791722&q=%s&type=like&sort=population&cnt=30&appid=b1b15e88fa797225412429c1c50c122a1&_=1497019791723";
-    public static final String REQUEST_DAILY = "http://openweathermap.org/data/2.5/forecast/daily?id=3996063&units=metric&appid=b1b15e88fa797225412429c1c50c122a1";
+    public static final String REQUEST_DAILY = "http://openweathermap.org/data/2.5/forecast/daily?id=%s&units=metric&appid=b1b15e88fa797225412429c1c50c122a1";
 
     public static final String STANDALONE = "standalone";
+    public static final String DAILY = "daily";
 }

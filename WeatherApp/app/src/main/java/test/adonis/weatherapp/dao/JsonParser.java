@@ -6,7 +6,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import test.adonis.weatherapp.constants.WeatherConstants;
 import test.adonis.weatherapp.model.Weather;
@@ -112,6 +115,47 @@ public class JsonParser {
         return  weatherTemp;
     }
 
+    public ArrayList<Weather> getDailyWeather(String text){
+        ArrayList<Weather> daily = null;
+
+        try {
+            JSONObject rootItem = new JSONObject(text);
+            JSONArray arrJson = rootItem.getJSONArray("list");
+            daily = new ArrayList<Weather>();
+
+            for (int i = 0; i < arrJson.length(); i++) {
+                Weather weatherTemp = new Weather();
+                JSONObject weatherItem = arrJson.getJSONObject(i);
+
+                weatherTemp.setMainHumidity(weatherItem.getString("humidity"));
+                weatherTemp.setMainPressure(weatherItem.getString("pressure"));
+                weatherTemp.setWindSpeed(weatherItem.getString("speed"));
+                weatherTemp.setWindDeg(weatherItem.getString("deg"));
+                weatherTemp.setClouds(weatherItem.getString("clouds"));
+
+                JSONObject temp = weatherItem.getJSONObject("temp");
+                weatherTemp.setTempDay(temp.getString("day"));
+                weatherTemp.setTempNight(temp.getString("night"));
+
+                JSONObject weatherInfo = weatherItem.getJSONArray("weather").getJSONObject(0);
+
+                weatherTemp.setWeatherMain(weatherInfo.getString("main"));
+                weatherTemp.setWeatherDescription(weatherInfo.getString("description"));
+                weatherTemp.setWeatherIcon( getUrlForIcon(weatherInfo.getString("icon")));
+                weatherTemp.setWeatherId(weatherInfo.getInt("id"));
+
+                weatherTemp.setDate(getDateForPosition(i));
+
+                daily.add(weatherTemp);
+                weatherTemp = null;
+            }
+        } catch (JSONException e) {
+            Log.d(WeatherConstants.TAG, "getWeatherForRawText" + e.getLocalizedMessage());
+        }
+
+        return daily;
+    }
+
     private String cleanRawText(String raw){
         String cleanedString = "";
 
@@ -122,8 +166,6 @@ public class JsonParser {
             cleanedString = cleanedString.substring(0, cleanedString.length() - 1);
         }
 
-        Log.d("XXX","Cleaned: " + cleanedString);
-
         return  cleanedString;
     }
 
@@ -133,7 +175,19 @@ public class JsonParser {
         } else {
             return WeatherConstants.DEFAULT_IMG;
         }
+    }
 
+    public static String getDateForPosition(int position) {
+        String date = "";
+        SimpleDateFormat sdfDate = new SimpleDateFormat("dd MM yyyy");
+        Date now = new Date();
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(now);
+        cal.add(Calendar.DATE, position); //minus number would decrement the days
+
+        date = sdfDate.format(cal.getTime());
+        return date;
     }
 
 }

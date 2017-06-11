@@ -50,7 +50,7 @@ public class WeathersAdapter extends RecyclerView.Adapter<WeathersAdapter.MyView
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
-            mCountryController.goToItemWithPosition(position,v);
+            mCountryController.goToItemWithPosition(position, v, weathers.get(position).getId());
         }
     }
 

@@ -35,6 +35,10 @@ public class Weather {
 
     private String visibility;
 
+    private String tempDay;
+    private String tempNight;
+
+    private String date;
 
     public String getSunset() {
         return sunset;
@@ -210,6 +214,30 @@ public class Weather {
 
     public void setVisibility(String visibility) {
         this.visibility = visibility;
+    }
+
+    public String getTempDay() {
+        return tempDay;
+    }
+
+    public void setTempDay(String tempDay) {
+        this.tempDay = tempDay;
+    }
+
+    public String getTempNight() {
+        return tempNight;
+    }
+
+    public void setTempNight(String tempNight) {
+        this.tempNight = tempNight;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
 

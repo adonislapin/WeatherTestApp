@@ -65,7 +65,7 @@ public class CountryController extends GenericController {
         }
     }
 
-    public void goToItemWithPosition(int position, View view){
+    public void goToItemWithPosition(int position, View view, int idCountry){
         TextView txt = (TextView) ((RelativeLayout)((CardView)((LinearLayout)view).getChildAt(0)).getChildAt(0)).getChildAt(1);
         ImageView img = (ImageView) ((RelativeLayout)((CardView)((LinearLayout)view).getChildAt(0)).getChildAt(0)).getChildAt(0);
 
@@ -78,6 +78,7 @@ public class CountryController extends GenericController {
 
         Bundle bundle = options.toBundle();
         intent.putExtra("Title", txt.getText());
+        intent.putExtra("idCountry", String.valueOf(idCountry));
         viewReference.startActivity(intent, bundle);
     }
 
